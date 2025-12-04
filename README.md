@@ -1,14 +1,14 @@
 # Pickle-Rickle-Room-THM-
-## Description
+# Description
 This repository contains my full walkthrough of the Pickle Rick CTF room from TryHackMe.
 The challenge focuses on practical web exploitation, enumeration, OSINT-style clue hunting, command execution abuse, and privilege escalation via sudo misconfiguration.
 
 The goal:
 ➡️ Find all three secret ingredients hidden in the system that Rick needs to transform back from a pickle!
 
-## Overview of the Attack Path
+# Overview of the Attack Path
 
-# Nmap scan shows SSH & HTTP open.
+## Nmap scan shows SSH & HTTP open.
 
 ## Inspecting the website reveals:
 - Username hidden in HTML comments
